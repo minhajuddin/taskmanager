@@ -4,16 +4,44 @@
 Which allows users to manage tasks
 
 
+URL:
+
+http://192.168.1.103:3000/tasks/?complete=1&other=test#foobar
+
+http://
+https://              #scheme
+
+192.168.1.103
+google.com
+cosmicvent.com        #host
+
+:3000                 #port
+:80 == http
+:443 == https
+
+/tasks/foo            #path
+/users/sign_in_
+
+?completed=1&foo=other #query string
+
+#foobar                #fragment
+
 User stories
 
   + A user should be able to create a new task
   + A user should be able to list tasks
+  + A user should be able to mark a task as completed
+  + A user should be able to list all incomplete tasks
 
-  - A user should be able to mark a task as completed
+  - A user should be able to list all complete tasks
+  - A user should be able to mark a task as incomplete
+
+
   - A user should be able to edit/delete a task
   - A user should be able to assign a task to another user
-  - A user should be able to list all incomplete tasks
-  - A user should be able to list all complete tasks
+
+  - Make the application look good
+  - Make the application user friendly using javascript
 
 
     Task

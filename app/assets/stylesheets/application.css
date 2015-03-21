@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+li.complete{
+  color: #888;
+  text-decoration: line-through;
+}

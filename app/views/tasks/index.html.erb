@@ -1,9 +1,22 @@
 <h1>All tasks</h1>
 
+
+<a href='/'>Home</a>
+
+<a href='/?complete=1'>Incomplete tasks</a>
+
+<a href='/?complete=0'>Completed tasks</a>
+
 <a href='/tasks/new'>Create a new task</a>
 
 <ul>
   <% @tasks.each do |t| %>
-    <li><%= t.title %></li>
+    <li class='<%= t.completed ? 'complete' : 'incomplete' %>'>
+    <span><%= t.title %></span>
+    <!--TODO: change action to /tasks to follow the convention -->
+    <form action='/tasks/<%= t.id %>/update' method='POST'>
+      <input type=submit value='Mark as complete' />
+    </form>
+  </li>
   <%end%>
 </ul>
