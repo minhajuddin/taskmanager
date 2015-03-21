@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   # get '/'
   root to: 'tasks#index'
 
+  get 'tasks/:id/edit' => 'tasks#edit'
+  post 'tasks/:id/update_title' => 'tasks#update_title'
+
   post 'tasks/:id/update' => 'tasks#update'
+  get 'tasks/:id/destroy' => 'tasks#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -14,7 +14,7 @@
  *= require_self
  */
 
-li.complete{
+li.complete span{
   color: #888;
   text-decoration: line-through;
 }

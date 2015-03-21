@@ -19,11 +19,33 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update_title
+    @task = Task.find(params[:id])
+    @task.title = params[:title]
+    @task.save
+    redirect_to root_path
+  end
+
   def update
     @task = Task.find(params[:id])
-    @task.completed = true
-    @task.completed_at = Time.now
+    if @task.completed
+      @task.completed = false
+      @task.completed_at = nil
+    else
+      @task.completed = true
+      @task.completed_at = Time.now
+    end
     @task.save
+    redirect_to root_path
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
     redirect_to root_path
   end
 

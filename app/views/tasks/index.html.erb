@@ -15,8 +15,10 @@
     <span><%= t.title %></span>
     <!--TODO: change action to /tasks to follow the convention -->
     <form action='/tasks/<%= t.id %>/update' method='POST'>
-      <input type=submit value='Mark as complete' />
+      <input type=submit value='Mark as <%= t.completed ? 'incomplete' : 'complete' %>' />
     </form>
+    <a href='/tasks/<%= t.id %>/edit'>Edit</a>
+    <a href='/tasks/<%= t.id %>/destroy'>Delete</a>
   </li>
   <%end%>
 </ul>
