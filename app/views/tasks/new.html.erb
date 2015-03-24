@@ -1,7 +1,11 @@
-<h1>New Task form</h1>
+
+
+<h1 class='page-header'>New Task form</h1>
 
 <form action='/tasks' method='POST'>
-  <textarea name='title' placeholder='Task..' ></textarea>
-  <br />
-  <input type='submit' value='Create Task' />
+  <div class="form-group">
+    <label for='title'>Title</label>
+    <textarea rows=10 id=title class='form-control' name='title' placeholder='Task..' ></textarea>
+  </div>
+  <input class='btn btn-primary' type='submit' value='Create Task' />
 </form>

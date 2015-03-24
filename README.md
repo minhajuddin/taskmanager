@@ -16,8 +16,6 @@ User stories
   + A user should be able to delete a task
   + A user should be able to edit a task
 
-
-
   - Make the application look good
   - Make the application user friendly using javascript
 
@@ -66,3 +64,68 @@ cosmicvent.com        #host
 ?completed=1&foo=other #query string
 
 #foobar                #fragment
+
+
+# HTTP 1.1
+
+  Request
+
+    GET /users/sign_in HTTP/1.1
+    Host: glue.websrvr.in
+    Name: Value
+    ....
+
+
+  POST /tasks/ HTTP/1.1
+  Host: ...
+  ....
+
+  name=foobar&age=29
+
+
+  Response
+
+    HTTP/1.1 200 OK
+    Server: nginx
+    Content-Type: text/html
+
+    <!doctype...>
+    ...
+
+
+
+
+
+
+
+Request
+FIRST LINE
+Headers (Name: Value)
+
+Body
+
+
+
+Response
+FIRST LINE
+Headers (Name: Value)
+
+Body
+
+
+POST /tasks HTTP/1.1
+Host:...
+...
+
+title=Awesome+title
+
+
+GET /foo HTTP/1.1
+....
+
+
+
+
+DELETE
+PUT
+PATCH

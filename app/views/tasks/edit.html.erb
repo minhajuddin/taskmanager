@@ -1,7 +1,8 @@
 <h1>Edit task</h1>
 
 <form action='/tasks/<%= @task.id %>/update_title' method='POST'>
-  <textarea name='title' placeholder='Task..' ><%= @task.title %></textarea>
-  <br />
-  <input type='submit' value='Update Task' />
+  <div class="form-group">
+  <textarea rows=10 name='title' class='form-control' placeholder='Task..' ><%= @task.title %></textarea>
+  </div>
+  <input class='btn btn-primary' ttype='submit' value='Update Task' />
 </form>
