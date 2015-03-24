@@ -22,3 +22,5 @@ li.complete span{
   color: #888;
   text-decoration: line-through;
 }
+
+.content{padding: 10px;}

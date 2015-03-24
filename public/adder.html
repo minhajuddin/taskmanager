@@ -1,0 +1,43 @@
+<input type="text" id='op1' />
+<br />
+<input type="text" id='op2' />
+<br />
+<input type="button" class='btn' id="addButton" value="Add" />
+<div id="output"></div>
+
+
+<style type="text/css">
+  #output{
+    min-height:100px;
+    padding:10px;
+    background-color: #aaa;
+  }
+  input[type=text]{
+    padding: 5px;
+    width: 400px;
+  }
+  .btn{
+    margin: 20px 0;
+  }
+</style>
+
+<script>
+  var output = jQuery('#output');
+
+  var op1 = jQuery('#op1');
+  var op2 = jQuery('#op2');
+
+  var addButton = jQuery('#addButton');
+  addButton.click(function(){
+      var result = (+op1.val() + +op2.val())
+      output.html("The sum of " + op1.val() + " and " + op2.val() + " is:" + result)
+  })
+
+  //addButton.click(function(){
+      //var result = +op1.val() + +op2.val();
+      //output.html(result)
+  //})
+
+
+</script>
+
