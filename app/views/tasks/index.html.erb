@@ -7,9 +7,10 @@
 
 <hr />
 
-<ol id=tasks>
+<ol id=tasks class='list-unstyled'>
   <% @tasks.each do |t| %>
-    <li class='<%= t.completed ? 'complete' : 'incomplete' %>'>
+    <li data-taskid='<%= t.id %>' class='<%= t.completed ? 'complete' : 'incomplete' %>'>
+    <input data-taskid='<%= t.id %>'  class=complete-checkbox type=checkbox <%= t.completed ? 'checked=checked' : '' %> />
     <span><%= t.title %></span>
     <a href='#' data-taskid='<%= t.id %>' type=button class='delete-task btn btn-danger btn-xs'>
       <i class='glyphicon glyphicon-trash'></i>
@@ -27,7 +28,11 @@
       //send an ajax request to the server
       var title = $('#title').val();
       $.post('/tasks', {title: title}, function(task){
-        $('#tasks').append('<li><span>' + task.title + "</span><a href='#' data-taskid='" + task.id + " ' type=button class='delete-task btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a></li>")
+        $('#tasks').append('<li class=incomplete data-taskid="' + task.id + '"> ' +
+          "<input data-taskid='" + task.id + "'  class=complete-checkbox type=checkbox /> <span>" +
+          task.title + "</span> <a href='#' data-taskid='" + task.id + " ' type=button class='delete-task btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a></li>")
+
+    
         $('#title').val('')
         })
       })
@@ -45,6 +50,45 @@ $('#tasks').on('click', '.delete-task', function(e){
 
     $.post('/tasks/' + id + "/destroy", function(){
       li.remove();
+    })
+})
+
+$('#tasks').on('click', '.complete-checkbox', function(e){
+    var completed = $(this).is(':checked');
+    var id = $(this).data('taskid');
+
+    var li = $(this).parent();
+
+    $.post('/tasks/' + id + "/update", function(){
+      li.toggleClass('complete')
+      li.toggleClass('incomplete')
+    })
+})
+
+$('#tasks').on('click', 'span', function(e){
+    var title = $(this).text();
+    $(this).replaceWith("<div data-oldtitle='"+title+"'><input type=text class=form-control value='"+title+"' /><a class='btn btn-primary save-edit' href='#'>Save</a><a class='cancel-edit btn btn-warning' href='#'>Cancel</a></div>")
+})
+
+$('#tasks').on('click', '.cancel-edit', function(e){
+    e.preventDefault()
+
+    var title = $(this).parent().data('oldtitle')
+
+    $(this).parent().replaceWith("<span>"+title+"</span>")
+})
+
+$('#tasks').on('click', '.save-edit', function(e){
+    e.preventDefault()
+
+    var title = $(this).parent().find("input").val()
+
+    var id = $(this).parent().parent().data('taskid')
+
+    $(this).parent().replaceWith("<span>"+title+"</span>")
+
+    $.post('/tasks/' + id + "/update_title", {title: title}, function(){
+      console.log('done updating')
     })
 })
 </script>
