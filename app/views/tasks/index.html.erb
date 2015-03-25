@@ -27,12 +27,17 @@
       //send an ajax request to the server
       var title = $('#title').val();
       $.post('/tasks', {title: title}, function(task){
-        $('#tasks').append('<li>' + task.title + '</li>')
+        $('#tasks').append('<li><span>' + task.title + "</span><a href='#' data-taskid='" + task.id + " ' type=button class='delete-task btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a></li>")
         $('#title').val('')
         })
       })
 
-$('.delete-task').click(function(e){
+    console.log("wiring up the handler")
+
+$('#tasks').on('click', '.delete-task', function(e){
+
+    console.log("in the click handler")
+
     e.preventDefault()
     var id = $(this).data('taskid');
 
