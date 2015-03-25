@@ -6,6 +6,12 @@
 </form>
 
 <hr />
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default filter-all">All</button>
+  <button type="button" class="btn btn-default filter-completed">Completed</button>
+  <button type="button" class="btn btn-default filter-incomplete">Incomplete</button>
+</div>
+<hr />
 
 <ol id=tasks class='list-unstyled'>
   <% @tasks.each do |t| %>
@@ -90,5 +96,21 @@ $('#tasks').on('click', '.save-edit', function(e){
     $.post('/tasks/' + id + "/update_title", {title: title}, function(){
       console.log('done updating')
     })
+})
+
+//only show the completed tasks
+$('.filter-completed').click(function(){
+    console.log('filter completed')
+    $('#tasks li.incomplete').addClass('hidden');
+    $('#tasks li.complete').removeClass('hidden');
+})
+$('.filter-incomplete').click(function(){
+    console.log('filter incompleted')
+    $('#tasks li.complete').addClass('hidden');
+    $('#tasks li.incomplete').removeClass('hidden');
+})
+$('.filter-all').click(function(){
+    console.log('show all')
+    $('#tasks li').removeClass('hidden');
 })
 </script>
